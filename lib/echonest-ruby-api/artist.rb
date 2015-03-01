@@ -64,7 +64,8 @@ module Echonest
 
     def genres
       genres = []
-      response = get('artist/profile', {name: @name, bucket: 'genre'})
+      options = (@id ? { id: @id } : { name: @name }).merge({ bucket: 'genre'})
+      response = get('artist/profile', options)
       return response[:artist][:genres].collect {|g| g[:name]}
     end
 
