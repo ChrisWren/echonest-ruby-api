@@ -74,7 +74,8 @@ module Echonest
     end
 
     def images(options = { results: 15 })
-      response = get_response(results: options[:results], name: @name)
+      options = (@id ? { id: @id } : { name: @name }).merge(options)
+      response = get_response(options)
       images = []
       response[:images].each do |i|
         images << i[:url]
