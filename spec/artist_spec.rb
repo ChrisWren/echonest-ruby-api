@@ -165,7 +165,7 @@ describe Echonest::Artist do
   describe '#images' do
     it 'should allow us to get an array of urls' do
       VCR.use_cassette('images') do
-        create_valid_artist
+        create_valid_artist_with_id
         @a.images.should be_a Array
       end
     end
